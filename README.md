@@ -56,7 +56,6 @@ pnpm dev
 ### 🚀 部署运维
 
 - [📦 部署指南](./docs/DEPLOYMENT.md) - Cloudflare Pages 部署完整流程
-- [🔧 故障排除](./docs/TROUBLESHOOTING.md) - 常见问题解决方案
 
 ### 📖 深度了解
 
