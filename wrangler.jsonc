@@ -37,7 +37,7 @@
       "vars": {
         "NODE_ENV": "production",
         "VITE_PORT": "5173"
-      }
+      },"name": "nekro-edge-template"
     }
   }
 }
