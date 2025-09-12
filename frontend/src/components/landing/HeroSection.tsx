@@ -145,7 +145,7 @@ export const HeroSection = () => {
               体验演示
             </Button>
             <Button
-              href="https://github.com/KroMiose/nekro-edge-template"
+              href="https://github.com/NekroAI/nekro-edge-template"
               target="_blank"
               variant="outlined"
               size="large"

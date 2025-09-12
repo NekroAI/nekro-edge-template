@@ -371,11 +371,11 @@ button {
    - 复现步骤
 
 2. **提交 Issue**:
-   - [GitHub Issues](https://github.com/KroMiose/nekro-edge-template/issues)
+   - [GitHub Issues](https://github.com/NekroAI/nekro-edge-template/issues)
    - 提供详细的问题描述和环境信息
 
 3. **社区讨论**:
-   - [GitHub Discussions](https://github.com/KroMiose/nekro-edge-template/discussions)
+   - [GitHub Discussions](https://github.com/NekroAI/nekro-edge-template/discussions)
 
 ## 💡 预防措施
 

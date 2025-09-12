@@ -25,7 +25,7 @@
 ### 1. 创建项目
 
 ```bash
-git clone https://github.com/KroMiose/nekro-edge-template.git your-project-name
+git clone https://github.com/NekroAI/nekro-edge-template.git your-project-name
 cd your-project-name
 pnpm install
 ```
@@ -72,8 +72,8 @@ pnpm dev
 
 ## 🤝 社区支持
 
-- 🐛 [报告问题](https://github.com/KroMiose/nekro-edge-template/issues)
-- 💬 [讨论区](https://github.com/KroMiose/nekro-edge-template/discussions)
+- 🐛 [报告问题](https://github.com/NekroAI/nekro-edge-template/issues)
+- 💬 [讨论区](https://github.com/NekroAI/nekro-edge-template/discussions)
 - ⭐ 觉得有用请给个 Star！
 
 ## 📄 许可证

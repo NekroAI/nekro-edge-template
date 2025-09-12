@@ -22,7 +22,7 @@
 
 #### 方式一：使用 GitHub 模板 (🌟 强烈推荐)
 
-1. 访问 [NekroEdge 模板页面](https://github.com/KroMiose/nekro-edge-template)
+1. 访问 [NekroEdge 模板页面](https://github.com/NekroAI/nekro-edge-template)
 2. 点击绿色的 **"Use this template"** 按钮
 3. 选择 **"Create a new repository"**
 4. 填写你的仓库名称和描述
@@ -46,7 +46,7 @@ cd your-project-name
 
 如果你计划向原模板贡献代码，可以选择 Fork：
 
-1. 在 [GitHub 模板页面](https://github.com/KroMiose/nekro-edge-template) 点击 **"Fork"**
+1. 在 [GitHub 模板页面](https://github.com/NekroAI/nekro-edge-template) 点击 **"Fork"**
 2. 克隆你的 Fork
 
 ```bash
@@ -58,7 +58,7 @@ cd your-project-name
 
 ```bash
 # 仅用于快速测试，不推荐用于正式项目
-git clone https://github.com/KroMiose/nekro-edge-template.git your-project-name
+git clone https://github.com/NekroAI/nekro-edge-template.git your-project-name
 cd your-project-name
 
 # 如需创建新的 Git 历史
