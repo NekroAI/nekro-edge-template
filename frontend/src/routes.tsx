@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import HomePage from "./pages/HomePage";
 import { Features } from "./pages/Features";
+import { DashboardPage } from "./pages/DashboardPage";
+import { AuthCallbackPage } from "./pages/AuthCallbackPage";
 
 /**
  * 应用路由配置
@@ -19,6 +21,8 @@ export const AppRoutes = () => (
     <Route path="/" element={<App />}>
       <Route index element={<HomePage />} />
       <Route path="features" element={<Features />} />
+      <Route path="dashboard" element={<DashboardPage />} />
+      <Route path="auth/callback" element={<AuthCallbackPage />} />
       {/* 在这里添加新的路由 */}
     </Route>
   </Routes>

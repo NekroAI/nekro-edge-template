@@ -348,6 +348,135 @@ app.get("/config", async (c) => {
 });
 ```
 
+## 🔐 认证 API 端点
+
+### 可用的认证端点
+
+| 端点                        | 方法 | 需要认证 | 描述                       |
+| --------------------------- | ---- | -------- | -------------------------- |
+| `/api/auth/github`          | GET  | ❌       | 获取 GitHub OAuth 登录 URL |
+| `/api/auth/github/callback` | GET  | ❌       | 处理 GitHub OAuth 回调     |
+| `/api/auth/me`              | GET  | ✅       | 获取当前用户信息           |
+| `/api/auth/logout`          | POST | ✅       | 用户登出                   |
+| `/api/auth/regenerate-key`  | POST | ✅       | 重新生成 API Key           |
+
+### 获取登录 URL
+
+```bash
+curl http://localhost:8787/api/auth/github
+```
+
+**响应**:
+
+```json
+{
+  "success": true,
+  "message": "GitHub OAuth URL 生成成功",
+  "data": {
+    "authUrl": "https://github.com/login/oauth/authorize?client_id=...",
+    "state": "..."
+  }
+}
+```
+
+### 获取当前用户信息
+
+```bash
+curl -H "Authorization: Bearer your_session_token" \
+  http://localhost:8787/api/auth/me
+```
+
+**响应**:
+
+```json
+{
+  "id": "cuid_user_id",
+  "username": "github_username",
+  "email": "user@example.com",
+  "avatarUrl": "https://avatars.githubusercontent.com/...",
+  "apiKey": "ak-...",
+  "createdAt": "2024-01-01T00:00:00.000Z"
+}
+```
+
+### 重新生成 API Key
+
+```bash
+curl -X POST \
+  -H "Authorization: Bearer your_session_token" \
+  http://localhost:8787/api/auth/regenerate-key
+```
+
+**响应**:
+
+```json
+{
+  "success": true,
+  "message": "API Key 重新生成成功",
+  "data": {
+    "apiKey": "ak-new_api_key_here"
+  }
+}
+```
+
+### 创建受保护的 API 端点
+
+要创建需要认证的 API 端点，使用 `authMiddleware`：
+
+```typescript
+// src/routes/protected.ts
+import { OpenAPIHono, createRoute } from "@hono/zod-openapi";
+import { authMiddleware } from "../middleware/auth";
+
+const protectedRoutes = new OpenAPIHono();
+
+// 应用认证中间件到所有路由
+protectedRoutes.use("/*", authMiddleware);
+
+const myProtectedRoute = createRoute({
+  method: "get",
+  path: "/protected-data",
+  summary: "获取受保护的数据",
+  security: [{ BearerAuth: [] }], // 在文档中标注需要认证
+  responses: {
+    200: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            data: z.string(),
+          }),
+        },
+      },
+      description: "成功响应",
+    },
+    401: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            success: z.boolean(),
+            message: z.string(),
+          }),
+        },
+      },
+      description: "未授权",
+    },
+  },
+});
+
+protectedRoutes.openapi(myProtectedRoute, async (c) => {
+  // 用户信息已由中间件注入到 context
+  const user = c.get("user");
+
+  return c.json({
+    data: `Hello ${user.username}! Your API Key is ${user.apiKey}`,
+  });
+});
+
+export default protectedRoutes;
+```
+
+详细的认证配置请参考 [认证配置指南](./AUTHENTICATION.md)。
+
 ## 💡 API 开发小贴士
 
 - **Schema 优先**: 先定义 Zod Schema，再实现业务逻辑
@@ -355,3 +484,4 @@ app.get("/config", async (c) => {
 - **错误处理**: 提供清晰的错误信息和状态码
 - **文档化**: 为每个 API 添加清晰的描述和示例
 - **类型安全**: 充分利用 TypeScript 的类型检查
+- **认证保护**: 敏感操作必须使用 authMiddleware 保护

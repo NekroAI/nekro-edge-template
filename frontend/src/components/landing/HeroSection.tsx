@@ -1,10 +1,12 @@
 import { Box, Button, Container, Typography, useTheme, Chip } from "@mui/material";
-import { GitHub } from "@mui/icons-material";
+import { GitHub, Login as LoginIcon, Dashboard as DashboardIcon } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAuth } from "@frontend/hooks/useAuth";
 
 export const HeroSection = () => {
   const theme = useTheme();
+  const { isAuthenticated, login } = useAuth();
 
   return (
     <Box
@@ -123,21 +125,68 @@ export const HeroSection = () => {
           transition={{ duration: 1, delay: 0.8 }}
         >
           <Box sx={{ display: "flex", gap: 3, justifyContent: "center", flexWrap: "wrap" }}>
+            {isAuthenticated ? (
+              <Button
+                component={RouterLink}
+                to="/dashboard"
+                variant="contained"
+                size="large"
+                startIcon={<DashboardIcon />}
+                sx={{
+                  px: 6,
+                  py: 2,
+                  fontSize: "1.1rem",
+                  borderRadius: "50px",
+                  background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                  "&:hover": {
+                    background: `linear-gradient(135deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
+                    transform: "translateY(-2px)",
+                    boxShadow: `0 8px 25px ${theme.palette.primary.main}40`,
+                  },
+                  transition: "all 0.3s ease",
+                }}
+              >
+                进入控制台
+              </Button>
+            ) : (
+              <Button
+                onClick={login}
+                variant="contained"
+                size="large"
+                startIcon={<LoginIcon />}
+                sx={{
+                  px: 6,
+                  py: 2,
+                  fontSize: "1.1rem",
+                  borderRadius: "50px",
+                  background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                  "&:hover": {
+                    background: `linear-gradient(135deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
+                    transform: "translateY(-2px)",
+                    boxShadow: `0 8px 25px ${theme.palette.primary.main}40`,
+                  },
+                  transition: "all 0.3s ease",
+                }}
+              >
+                立即开始
+              </Button>
+            )}
             <Button
               component={RouterLink}
               to="/features"
-              variant="contained"
+              variant="outlined"
               size="large"
               sx={{
                 px: 6,
                 py: 2,
                 fontSize: "1.1rem",
                 borderRadius: "50px",
-                background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                borderColor: theme.palette.primary.main,
+                color: theme.palette.primary.main,
                 "&:hover": {
-                  background: `linear-gradient(135deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
+                  borderColor: theme.palette.primary.dark,
+                  backgroundColor: `${theme.palette.primary.main}10`,
                   transform: "translateY(-2px)",
-                  boxShadow: `0 8px 25px ${theme.palette.primary.main}40`,
                 },
                 transition: "all 0.3s ease",
               }}

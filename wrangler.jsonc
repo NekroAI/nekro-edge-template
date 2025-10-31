@@ -18,7 +18,8 @@
   ],
   "vars": {
     "NODE_ENV": "development",
-    "VITE_PORT": "5173"
+    "VITE_PORT": "5173",
+    "APP_BASE_URL": "http://localhost:8787"
   },
   "env": {
     "production": {
@@ -36,7 +37,8 @@
       ],
       "vars": {
         "NODE_ENV": "production",
-        "VITE_PORT": "5173"
+        "VITE_PORT": "5173",
+        "APP_BASE_URL": "https://edge.nekro.ai"
       }
     }
   }

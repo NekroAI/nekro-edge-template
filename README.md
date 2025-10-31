@@ -14,6 +14,7 @@
 
 - 🏗️ **全栈框架**: Hono + React - 在 Cloudflare Workers 上的完整解决方案
 - ⚡ **现代开发**: Vite + TypeScript - 闪电般的开发体验
+- 🔐 **用户认证**: GitHub OAuth 登录集成
 - 🎨 **UI 组件**: Material-UI + UnoCSS - 完整的设计系统
 - 🗄️ **数据库**: Cloudflare D1 + Drizzle ORM - 类型安全的无服务器数据库
 - 🌙 **主题系统**: 内置亮/暗模式切换
@@ -30,13 +31,22 @@ cd your-project-name
 pnpm install
 ```
 
-### 2. 启动开发
+### 2. 配置 GitHub OAuth（可选）
+
+如果需要使用登录功能，请配置 GitHub OAuth：
+
+1. 在 [GitHub Settings](https://github.com/settings/applications/new) 创建 OAuth App
+2. 复制 `.env.example` 为 `.dev.vars` 并填入你的凭证
+
+详细配置请参考 [认证配置指南](./docs/AUTHENTICATION.md)
+
+### 3. 启动开发
 
 ```bash
 pnpm dev
 ```
 
-### 3. 访问应用
+### 4. 访问应用
 
 - 🔥 **前端开发**: http://localhost:5173 (推荐，支持热重载)
 - 🔗 **完整应用**: http://localhost:8787
@@ -49,6 +59,7 @@ pnpm dev
 ### 🛠️ 开发指南
 
 - [📋 安装配置指南](./docs/INSTALLATION.md) - 详细的环境搭建和配置
+- [🔐 认证配置指南](./docs/AUTHENTICATION.md) - GitHub OAuth 登录集成
 - [⚙️ 开发指南](./docs/DEVELOPMENT.md) - 日常开发工作流和最佳实践
 - [🎨 主题定制指南](./docs/THEMING.md) - 自定义应用外观和主题
 - [🔌 API 开发指南](./docs/API_GUIDE.md) - 创建和管理后端 API
